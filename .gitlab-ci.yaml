@@ -1,0 +1,20 @@
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  script:
+    - echo "Building the application"
+    - docker-compose up --build -d
+  only:
+    - develop
+
+test:
+  stage: test
+  script:
+    - echo "Running tests"
+    - docker exec -it <your_app_container_name> ./vendor/bin/codecept run
+  only:
+    - develop
+  when: on_success

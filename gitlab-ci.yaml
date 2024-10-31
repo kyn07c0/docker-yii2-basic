@@ -1,0 +1,34 @@
+image: docker:latest
+
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  DOCKER_HOST: docker-compose-service://php:8080
+  DB_HOST: db:3306
+
+build:
+  stage: build
+  script:
+    - docker-compose build
+  only:
+    - develop
+
+test:
+  stage: test
+  script:
+    - docker-compose run test
+  dependencies:
+    - build
+  only:
+    - develop
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deployment to production..."
+    - docker-compose up -d
+  only:
+    - master
