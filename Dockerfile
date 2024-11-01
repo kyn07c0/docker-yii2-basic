@@ -14,6 +14,7 @@ RUN apt-get update \
 # Копируем проект в контейнер
 WORKDIR /var/www/html
 COPY --chown=www-data:www-data app /var/www/html
+RUN ls -la /var/www/html
 
 # Установка Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
