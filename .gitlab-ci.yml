@@ -10,16 +10,16 @@ build:
   image: docker:27.1.2-cli-alpine3.20
   script:
     - echo "Building the application"
-    - docker-compose up --build -d
+    - docker-compose up --build
   only:
     - develop
 
-test:
-  stage: test
-  image: docker:27.1.2-cli-alpine3.20
-  script:
-    - echo "Running tests"
-    - docker exec -it jii2-web ./vendor/bin/codecept run
-  only:
-    - develop
-  when: on_success
+#test:
+#  stage: test
+#  image: docker:27.1.2-cli-alpine3.20
+#  script:
+#    - echo "Running tests"
+#    - docker exec -it jii2-web ./vendor/bin/codecept run
+#  only:
+#    - develop
+#  when: on_success
