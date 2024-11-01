@@ -19,7 +19,7 @@ test:
   image: docker:27.1.2-cli-alpine3.20
   script:
     - echo "Running tests"
-    - docker exec -it <your_app_container_name> ./vendor/bin/codecept run
+    - docker exec -it jii2-web ./vendor/bin/codecept run
   only:
     - develop
   when: on_success
