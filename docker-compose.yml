@@ -4,6 +4,7 @@ services:
 
   db:
     image: mariadb:10.4
+    container_name: jii2-db
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: yii2basic
@@ -12,10 +13,11 @@ services:
     ports:
       - "3306:3306"
 
-  app:
+  web:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: jii2-web
     ports:
       - "8880:80"
     volumes:
@@ -27,7 +29,7 @@ services:
     build: .
     entrypoint: ["bash", "-c", "codecept run"]
     depends_on:
-      - app
+      - web
     volumes:
       - ./tests:/var/www/html/tests
 
