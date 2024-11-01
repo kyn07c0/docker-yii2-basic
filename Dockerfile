@@ -11,16 +11,16 @@ RUN apt-get update \
  && apt-get clean
 # && rm -r /var/lib/apt/lists/*
 
-# Установка Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
 # Копируем проект в контейнер
 WORKDIR /var/www/html
-COPY ./app/ .
+COPY --chown=www-data:www-data ./app .
+
+# Установка Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer install
 
 # Установка прав
-RUN chown -R www-data:www-data /var/www/html
+#RUN chown -R www-data:www-data /var/www/html
 
 # Настройка Apache
 COPY ./apache.conf /etc/apache2/sites-available/000-default.conf
