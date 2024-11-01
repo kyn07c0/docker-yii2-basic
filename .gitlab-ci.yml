@@ -10,7 +10,7 @@ build:
   image: docker:27.1.2-cli-alpine3.20
   script:
     - echo "Building the application"
-    - docker-compose up --build
+    - docker-compose up -d --build
   only:
     - develop
 
