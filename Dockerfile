@@ -13,7 +13,8 @@ RUN apt-get update \
 
 # Копируем проект в контейнер
 WORKDIR /var/www/html
-COPY --chown=www-data:www-data app /var/www/html
+COPY ./app .
+RUN chown -R www-data:www-data /var/www/html
 RUN ls -la /var/www/html
 
 # Установка Composer
