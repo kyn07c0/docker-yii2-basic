@@ -9,8 +9,11 @@ build:
   stage: build
   image: docker:27.1.2-cli-alpine3.20
   script:
-    - docker build -t jii2-web:${VERSION} .
-    - docker push ${CI_REGISTRY_IMAGE}:${VERSION}
+    - >
+      docker build
+      --build-arg VERSION=$VERSION
+      --tag $CI_REGISTRY_IMAGE/jii2-web:$VERSION
+    - docker push $CI_REGISTRY_IMAGE/jii-web:$VERSION
 #    - docker-compose up -d --build
   only:
     - develop
