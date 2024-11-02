@@ -9,10 +9,7 @@ build:
   stage: build
   image: docker:27.1.2-cli-alpine3.20
   script:
-    - >
-      docker-compose build
-      --build-arg VERSION=$VERSION
-      --tag jii2-web:$VERSION
+    - docker-compose build
   only:
     - develop
 
