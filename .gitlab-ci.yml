@@ -23,9 +23,9 @@ test:
     - build
   script:
     - docker-compose up -d
-    - docker-compose exec web composer install --no-interaction --prefer-dist
-    - docker-compose exec web php yii migrate --interactive=0
-    - docker-compose exec web vendor/bin/codecept run --coverage
+#    - docker-compose exec web composer install --no-interaction --prefer-dist
+#    - docker-compose exec web php yii migrate --interactive=0
+    - docker-compose exec web vendor/bin/codecept run #--coverage
     - docker-compose down
   only:
     - develop
