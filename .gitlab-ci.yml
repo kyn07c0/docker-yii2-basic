@@ -19,14 +19,17 @@ build:
 test:
   stage: test
 #  image: docker:27.1.2-cli-alpine3.20
-  image: php:7.4-cli-xdebug
+  image: php:7.4-cli
   needs:
     - build
   script:
     - docker-compose up -d
-    - docker-compose exec web composer install --no-interaction --prefer-dist
-    - docker-compose exec web php yii migrate --interactive=0
-    - docker-compose exec web vendor/bin/codecept run --coverage
+    - pecl install xdebug # Установка Xdebug через pecl
+    - echo "zend_extension=xdebug.so" >> /usr/local/etc/php/php.ini # Включение Xdebug в php.ini
+    - codecept run --coverage
+#    - docker-compose exec web composer install --no-interaction --prefer-dist
+#    - docker-compose exec web php yii migrate --interactive=0
+#    - docker-compose exec web vendor/bin/codecept run --coverage
     - docker-compose down
   only:
     - develop
