@@ -13,14 +13,16 @@ build:
   only:
     - develop
 
-#test:
-#  stage: test
-#  image: docker:27.1.2-cli-alpine3.20
-#  needs:
-#    - build
-#  script:
-#    - echo "Running tests"
-#    - docker exec -it jii2-web ./vendor/bin/codecept run
-#  only:
-#    - develop
-#  when: on_success
+test:
+  stage: test
+  image: docker:27.1.2-cli-alpine3.20
+  needs:
+    - build
+  script:
+    - docker-compose up -d
+    - docker-compose exec app composer install --no-interaction --prefer-dist
+    - docker-compose exec app php yii migrate --interactive=0
+    - docker-compose exec app vendor/bin/codecept run --coverage
+    - docker-compose down
+  only:
+    - develop
