@@ -1,5 +1,8 @@
 variables:
-  VERSION: 1.0.${CI_PIPELINE_ID}
+  MARIADB_ROOT_PASSWORD: $MARIADB_ROOT_PASSWORD
+  MARIADB_DATABASE: $MARIADB_DATABASE
+  MARIADB_USER: $MARIADB_USER
+  MARIADB_PASSWORD: $MARIADB_PASSWORD
 
 stages:
   - build
@@ -9,17 +12,20 @@ build:
   stage: build
   image: docker:27.1.2-cli-alpine3.20
   script:
-    - echo "Building the application"
-    - docker-compose up --build -d
+    - docker-compose build
   only:
     - develop
 
 test:
   stage: test
   image: docker:27.1.2-cli-alpine3.20
+  needs:
+    - build
   script:
-    - echo "Running tests"
-    - docker exec -it <your_app_container_name> ./vendor/bin/codecept run
+    - docker-compose up -d
+    - docker-compose exec web vendor/bin/codecept run
+    - docker-compose down
   only:
     - develop
-  when: on_success
+
+
