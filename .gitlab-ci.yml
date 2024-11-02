@@ -8,20 +8,11 @@ stages:
 build:
   stage: build
   image: docker:27.1.2-cli-alpine3.20
-  before_script:
-    - until docker info; do sleep 1; done
-    - echo $CI_REGISTRY_USER
-    - echo $CI_REGISTRY_PASSWORD
-    - echo $CI_REGISTRY
-    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" -p- $CI_REGISTRY
   script:
     - >
-      docker build
+      docker-compose build
       --build-arg VERSION=$VERSION
-      --tag $CI_REGISTRY_IMAGE/jii2-web:$VERSION
-      .
-    - docker push $CI_REGISTRY_IMAGE/jii-web:$VERSION
-#    - docker-compose up -d --build
+      --tag jii2-web:$VERSION
   only:
     - develop
 
