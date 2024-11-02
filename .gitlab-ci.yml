@@ -18,7 +18,8 @@ build:
 
 test:
   stage: test
-  image: docker:27.1.2-cli-alpine3.20
+#  image: docker:27.1.2-cli-alpine3.20
+  image: php:7.4-cli-xdebug
   needs:
     - build
   script:
