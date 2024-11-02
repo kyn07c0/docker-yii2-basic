@@ -12,7 +12,7 @@ build:
   stage: build
   image: docker:27.1.2-cli-alpine3.20
   script:
-    - docker-compose build --build-arg MARIADB_USER="sdsdsds"
+    - docker-compose build --build-arg MARIADB_USER=$MARIADB_USER
   only:
     - develop
 
@@ -24,7 +24,7 @@ test:
   script:
     - docker-compose up -d
     - docker-compose exec web composer install --no-interaction --prefer-dist
-    #- docker-compose exec web php yii migrate --interactive=0
+    - docker-compose exec web php yii migrate --interactive=0
     - docker-compose exec web vendor/bin/codecept run --coverage
     - docker-compose down
   only:
