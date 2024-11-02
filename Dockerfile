@@ -7,8 +7,9 @@ ENV MARIADB_USER=$MARIADB_USER
 # Установка необходимых расширений
 RUN apt-get update \
  && apt-get install -y curl libfreetype6-dev libgd-dev libjpeg-dev libpng-dev libzip-dev zip \
- && docker-php-ext-install mysqli \
- && docker-php-ext-enable mysqli \
+# && docker-php-ext-install mysqli \
+# && docker-php-ext-enable mysqli \
+ && docker-php-ext-install pdo pdo_mysql \
  && docker-php-ext-configure gd --with-freetype --with-jpeg \
  && docker-php-ext-install gd \
  && apt-get clean
