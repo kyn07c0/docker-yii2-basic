@@ -21,9 +21,6 @@ RUN ls -la /var/www/html
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer install
 
-# Установка прав
-#RUN chown -R www-data:www-data /var/www/html
-
 # Настройка Apache
 COPY ./apache.conf /etc/apache2/sites-available/000-default.conf
 RUN a2ensite 000-default.conf \

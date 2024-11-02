@@ -6,35 +6,17 @@ services:
     image: mariadb:10.4
     container_name: jii2-db
     environment:
-      MARIADB_ROOT_PASSWORD: root
-      MARIADB_DATABASE: yii2basic
-      MARIADB_USER: user
-      MARIADB_PASSWORD: password
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
     ports:
       - "3306:3306"
 
   web:
     build: .
-#      context: .
-#      dockerfile: Dockerfile
     container_name: jii2-web
-    environment:
-      DATABASE_HOST: db
-      DATABASE_NAME: yii2basic
-      DATABASE_USER: user
-      DATABASE_PASSWORD: password
     ports:
       - "8880:80"
-#    volumes:
-#      - ./app/:/var/www/html
     depends_on:
       - db
-
-#  test:
-#    build: .
-#    entrypoint: ["bash", "-c", "codecept run"]
-#    depends_on:
-#      - web
-#    volumes:
-#      - ./tests:/var/www/html/tests
-
