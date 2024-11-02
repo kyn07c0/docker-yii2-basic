@@ -12,6 +12,7 @@ services:
   web:
     build: .
     image: jii2-web
+    container_name: jii2-web
     ports:
       - "8880:80"
     depends_on:
