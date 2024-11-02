@@ -1,7 +1,8 @@
 # Используем образ PHP с Apache
 FROM php:7.4-apache
 
-ENV MARIADB_USER ${$MARIADB_USER}
+ARG MARIADB_USER
+ENV MARIADB_USER=$MARIADB_USER
 
 # Установка необходимых расширений
 RUN apt-get update \
