@@ -12,7 +12,7 @@ build:
   stage: build
   image: docker:27.1.2-cli-alpine3.20
   script:
-    - docker-compose build --build-arg MARIADB_USER=$MARIADB_USER
+    - docker-compose build
   only:
     - develop
 
