@@ -1,6 +1,8 @@
 # Используем образ PHP с Apache
 FROM php:7.4-apache
 
+ARG MARIADB_USER
+
 # Установка необходимых расширений
 RUN apt-get update \
  && apt-get install -y curl libfreetype6-dev libgd-dev libjpeg-dev libpng-dev libzip-dev zip \
