@@ -8,7 +8,7 @@ RUN apt-get update \
  && docker-php-ext-configure gd --with-freetype --with-jpeg \
  && docker-php-ext-install gd \
  && apt-get clean
-# && rm -r /var/lib/apt/lists/*
+ && rm -r /var/lib/apt/lists/*
 
 # Копируем проект в контейнер
 WORKDIR /var/www/html
