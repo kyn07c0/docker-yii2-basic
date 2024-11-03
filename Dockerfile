@@ -7,7 +7,7 @@ RUN apt-get update \
  && docker-php-ext-install pdo pdo_mysql \
  && docker-php-ext-configure gd --with-freetype --with-jpeg \
  && docker-php-ext-install gd \
- && apt-get clean
+ && apt-get clean \
  && rm -r /var/lib/apt/lists/*
 
 # Копируем проект в контейнер
