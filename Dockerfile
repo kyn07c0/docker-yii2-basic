@@ -13,7 +13,7 @@ RUN apt-get update \
 
 # Копируем проект в контейнер
 WORKDIR /var/www/html
-COPY ./app/ .
+COPY ./app .
 COPY db.php ./config
 RUN chown -R www-data:www-data /var/www/html
 

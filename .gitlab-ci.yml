@@ -27,5 +27,3 @@ test:
     - docker-compose down
   only:
     - develop
-
-
