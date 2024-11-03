@@ -17,8 +17,8 @@ COPY db.php ./config
 RUN chown -R www-data:www-data /var/www/html
 
 # Установка Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN composer install
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+ && composer install
 
 # Настройка Apache
 COPY ./apache.conf /etc/apache2/sites-available/000-default.conf
