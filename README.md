@@ -7,19 +7,21 @@
 - jii2-db - содержит базу данных MariaDB 10.4;
 
 ```
-├── .gitlab-ci.yml
-├── docker-compose.yml
-├── README.md
-├── tests
-│   └── codeception.yaml
-└── web
-    ├── apache.conf
-    ├── Dockerfile
-    └── src
+├── docker
+│   ├── docker-compose.yml
+│   ├── mariadb
+│   │   ├── Dockerfile
+│   │   └── init_db_jii2.sql
+│   └── php-apache
+│       ├── apache.conf
+│       ├── db.php
+│       ├── Dockerfile
+│       └── jii2
+└── README.md
 ```
 
 ## Процесс CI
-В корневой директории проекта находится файл .gitlab-ci.yml, который запускает процесс CI в случае появления новых коммитов в ветке devop. 
+В корневой директории проекта находится файл .gitlab-ci.yml, который запускает процесс CI в случае появления новых коммитов в ветке develop. 
 Процесс CI состоит из следующих этапов:
 - Сборка приложения. На этом этапе собирается образ Docker с помощью docker-compose build;
 - Тестирование. На этом этапе запускаются контейнеры jii2-web и jii2-db (docker-compose up -d) и выполняется тестирование в контексте web контейнера.
@@ -27,6 +29,7 @@
 # Переменные Gitlab-CI
 |Переменная|Описание|
 |----------|--------|
-|MARIADB_DATABASE|Название БД|
-|MARIADB_USER|Пользователь БД|
-|MARIADB_PASSWORD|Пароль пользователя ДБ|
+|MARIADB_DATABASE|Название базы данных приложения jii2|
+|MARIADB_USER|Пользователь базы данных jii2|
+|MARIADB_PASSWORD|Пароль пользователя базы данных jii2|
+|MARIADB_ROOT_PASSWORD|Пароль пользователя с правами администратора(root) базы данных MariaDB|
