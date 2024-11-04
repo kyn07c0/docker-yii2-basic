@@ -23,8 +23,9 @@ test:
   needs:
     - build
   script:
-    - docker-compose -f docker/docker-compose.yml up -d
-    - docker-compose -f docker/docker-compose.yml exec web vendor/bin/codecept run
+    - cd ./docker
+    - docker-compose up -d
+    - docker-compose exec web vendor/bin/codecept run
 #    - docker-compose down
   only:
     - develop
