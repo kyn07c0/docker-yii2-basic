@@ -1,3 +1,5 @@
+
+
 FROM mariadb:10.4
 
 ARG MARIADB_ROOT_PASSWORD
