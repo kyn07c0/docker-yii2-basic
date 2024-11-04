@@ -12,7 +12,7 @@ build:
   stage: build
   image: docker:27.1.2-cli-alpine3.20
   script:
-    - docker-compose build
+    - docker-compose build -f ./docker/docker-compose.yml
   only:
     - develop
 
