@@ -11,7 +11,6 @@ RUN apt-get update \
 WORKDIR /var/www/html
 COPY ./jii2 .
 COPY db.php ./config
-COPY init_db_jii2.sql ./docker-entrypoint-initdb.d/
 RUN chown -R www-data:www-data /var/www/html
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
