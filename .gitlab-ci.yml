@@ -22,7 +22,7 @@ test:
   needs:
     - build
   script:
-    - docker-compose up -d
+    - docker-compose -f docker/docker-compose.yml up -d
     - docker-compose exec web vendor/bin/codecept run
 #    - docker-compose down
   only:
