@@ -4,7 +4,7 @@ services:
     #image: mariadb:10.4
     #container_name: jii2-db
     build:
-      context: ./mariadb
+      context: ./docker/mariadb
       dockerfile: Dockerfile
     image: jii2-db
     container_name: jii2-db
