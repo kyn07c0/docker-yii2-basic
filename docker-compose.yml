@@ -9,11 +9,19 @@ services:
       MARIADB_PASSWORD: ${MARIADB_PASSWORD}
     ports:
       - "3306:3306"
+    networks:
+      - jii2-network
   web:
     build: .
     image: jii2-web
     container_name: jii2-web
     ports:
       - "8880:80"
+    networks:
+      - jii2-network
     depends_on:
       - db
+
+networks:
+  jii2-network:
+    driver: bridge
