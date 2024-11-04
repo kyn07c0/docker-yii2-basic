@@ -1,3 +1,3 @@
 CREATE DATABASE database;
-CREATE USER user IDENTIFIED BY password;
-GRANT ALL PRIVILEGES ON database.* TO user;
+CREATE USER jii2_user IDENTIFIED BY 'xyTcV3Q7';
+GRANT ALL PRIVILEGES ON yii2_database.* TO jii2_user;
