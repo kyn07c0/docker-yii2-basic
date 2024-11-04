@@ -20,6 +20,6 @@ test:
     - cd ./docker
     - docker-compose up -d
     - docker-compose exec web vendor/bin/codecept run
-#    - docker-compose down
+    - docker-compose down
   only:
     - develop
