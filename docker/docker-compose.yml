@@ -20,6 +20,10 @@ services:
     build: ./php-apache
     image: jii2-web
     container_name: jii2-web
+    environment:
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
     ports:
       - "8880:80"
     networks:
