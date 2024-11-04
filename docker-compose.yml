@@ -1,6 +1,10 @@
 services:
+
   db:
-    image: mariadb:10.4
+    #image: mariadb:10.4
+    #container_name: jii2-db
+    build: ./mariadb
+    image: jii2-db
     container_name: jii2-db
     environment:
       MARIADB_DATABASE: ${MARIADB_DATABASE}
@@ -11,6 +15,7 @@ services:
       - "3306:3306"
     networks:
       - jii2-network
+
   web:
     build: .
     image: jii2-web
