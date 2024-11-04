@@ -9,7 +9,7 @@ RUN apt-get update \
  && rm -r /var/lib/apt/lists/*
 
 WORKDIR /var/www/html
-COPY ./app .
+COPY ./jii2 .
 COPY db.php ./config
 RUN chown -R www-data:www-data /var/www/html
 
