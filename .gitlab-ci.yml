@@ -8,8 +8,9 @@ build:
   script:
     - cd ./docker
     - docker-compose build
-  only:
-    - develop
+  when: $CI_COMMIT_BRANCH == "develop"
+#  only:
+#    - develop
 
 test:
   stage: test
@@ -21,5 +22,6 @@ test:
     - docker-compose up -d
     - docker-compose exec web vendor/bin/codecept run
     - docker-compose down
-  only:
-    - develop
+  when: $CI_COMMIT_BRANCH == "develop"
+#  only:
+#    - develop
